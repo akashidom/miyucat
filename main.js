@@ -26,7 +26,7 @@ client.on(Events.ClientReady, readyClient => {
 
 // declare commands
 const commands = new Map();
-const files = await readdir('./slash-commands/').filter(file => file.endsWith('.js'));
+const files = fs.readdirSync('./slash-commands/').filter(file => file.endsWith('.js'));
 
 // push commands
 for (const file of files) {
