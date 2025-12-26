@@ -9,7 +9,7 @@ const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 
 const commands = [];
-const files = await readdir('./');
+const files = await readdir('./slash-commands/');
 for (const file of files) {
   console.log(file)
 }
