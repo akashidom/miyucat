@@ -21,7 +21,7 @@ const client = new Client( {
   intents: [GatewayIntentBits.Guilds]
 });
 client.on(Events.ClientReady, readyClient => {
-  console.log(`===★★★ Logged in as ${readyClient.user.tag}! ★★★===}`);
+  console.log(`===★★★ Logged in as ${readyClient.user.tag}! ★★★===`);
 });
 
 // declare commands
