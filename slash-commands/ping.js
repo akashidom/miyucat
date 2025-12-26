@@ -13,6 +13,6 @@ export default {
     
     const latency = interaction.createdTimestamp - defer.interaction.createdTimestamp;
     
-    await interaction.editReply('Pong! <:happy:1454088304218734822>\n```latency : ' + latency + 'ms````');
+    await interaction.editReply('Pong! <:happy:1454088304218734822>\n```latency : ' + latency + 'ms```');
   }
 };
