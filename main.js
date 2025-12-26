@@ -76,10 +76,6 @@ client.on(Events.InteractionCreate, async interaction => {
   }
 });
 
-// import commands
-console.log('# Importing command.js.')
-await import('./command.js');
-
 /* LOG IN */
 console.log('= Logging in…')
 client.login(TOKEN);
