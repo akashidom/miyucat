@@ -9,7 +9,7 @@ export default {
       flags: 64,
       withResponse: true
     });
-    if (DEBUG_MODE) console.log(defer);
+    if (DEBUG_MODE) console.log('>>> Response:', defer);
     
     const latency = interaction.createdTimestamp - defer.interaction.createdTimestamp;
     
