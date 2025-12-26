@@ -7,6 +7,7 @@ console.log('@ Imported main.js.')
 const DEBUG_MODE = process.env.DEBUG_MODE === "true";
 const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
+const GUILD_ID = process.env.GUILD_ID;
 
 // declare client
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -15,13 +16,13 @@ client.on(Events.ClientReady, readyClient => {
 });
 
 // declare commands
-const commands = [];
+const commands = new Map();
 const files = await readdir('./slash-commands/').filter(file => file.endsWith('.js'));
 
 // push commands
 for (const file of files) {
   const command = await import(`./slash-commands/${file}`);
-  commands.push(command.default.data.toJSON());
+  commands.set(command.default.data.name, command.default);
 }
 
 // declare rest
@@ -31,19 +32,26 @@ try {
   if (DEBUG_MODE) console.log('>>> Commands:', commands);
   
   // refresh app (/) commands
-  await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
+  await rest.put(Routes.applicationCommands(CLIENT_ID, DEBUG_MODE ? GUILD_ID: undefined), { body: commands });
   
   console.log('@ Successfully reloaded application (/) commands.');
 } catch (error) {
   console.error('>@>@>@>@>@ Error occured while refreshing application (/) commands.', error);
 }
+
 // when app (/) command sent 
 client.on(Events.InteractionCreate, async interaction => {
   if (!interaction.isChatInputCommand()) return;
     if (DEBUG_MODE) console.log("[/]", interaction.user.tag, '→', interaction.commandName);
-
-  if (interaction.commandName === 'ping') {
-    await interaction.reply('Pong!');
+const command = commands.get(interaction.commandName);
+  if (!command) return;
+  
+  try {
+    await command.execute(interaction, DEBUG_MODE);
+  } catch (error) {
+    console.error(`>@>@>@>@>@ Error trying to execute /${interaction.commandName}:`, error);
+    const content = `i fainted while trying to do /${interaction.commandName}… <:sad:1454182035244454153>`;
+    await interaction.reply({ content: , flags: 64 }).catch(() => {});
   }
 });
 
