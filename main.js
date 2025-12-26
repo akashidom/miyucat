@@ -2,8 +2,11 @@
 import {
   Client,
   Events,
-  GatewayIntentBits
+  GatewayIntentBits,
+  REST,
+  Routes
 } from 'discord.js';
+import fs from 'fs';
 import 'dotenv/config';
 console.log('@ Imported main.js.')
 
