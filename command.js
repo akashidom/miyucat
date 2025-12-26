@@ -9,9 +9,11 @@ const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 
 const commands = [];
-const files = await readdir('./slash-commands/');
+const files = await readdir('./slash-commands/').filter(file => file.endsWith('.js'));
+
 for (const file of files) {
-  import command from `./slash-commands/${file}`;
+  const command = await import(`./slash-commands/${file}`);
+  commands.push(command.default.data.toJSON());
 }
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
