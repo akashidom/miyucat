@@ -61,9 +61,15 @@ client.on(Events.InteractionCreate, async interaction => {
   } catch (error) {
     console.error(`>@>@>@>@>@ Error trying to execute /${interaction.commandName}:`, error);
     const content = `i fainted while trying to do /${interaction.commandName}… <:sad:1454182035244454153>`;
-    await interaction.reply({
-      content:, flags: 64
-    }).catch(() => {});
+    if (interaction.replied || interaction.deferred) {
+      await interaction.editReply({
+        content
+      }).catch(() => {});
+    } else {
+      await interaction.reply({
+        content, ephemeral: true
+      }).catch(() => {});
+    }
   }
 });
 
