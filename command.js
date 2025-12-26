@@ -1,5 +1,6 @@
 // IMPORT
 import { REST, Routes } from 'discord.js';
+import { readdir } from 'node:fs/promises'
 import 'dotenv/config';
 console.log('@ Imported command.js')
 
@@ -7,12 +8,11 @@ console.log('@ Imported command.js')
 const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 
-const commands = [
-  {
-    name: 'ping',
-    description: 'Replies with Pong!',
-  },
-];
+const commands = [];
+const files = await readdir();
+for (const file of files) {
+  import command from file;
+}
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
 
