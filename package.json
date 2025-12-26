@@ -18,8 +18,8 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "apt update -y && apt full-upgrade -y && DEBUG_MODE=false node main.js",
+    "test": "DEBUG_MODE=true node main.js"
   },
   "dependencies": {
     "discord.js": "^14.25.1",
