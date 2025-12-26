@@ -1,0 +1,23 @@
+{
+  "name": "miyucat",
+  "version": "0.1.0",
+  "description": "A discord bot that is a cat :3 it's called miyu btw. Makes the server alive & fun :o",
+  "keywords": [
+    "discord"
+  ],
+  "homepage": "https://github.com/akashidom/miyucat#readme",
+  "bugs": {
+    "url": "https://github.com/akashidom/miyucat/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashidom/miyucat.git"
+  },
+  "license": "ISC",
+  "author": "sha",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
