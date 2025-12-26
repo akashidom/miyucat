@@ -1,6 +1,7 @@
 // IMPORT
 import { REST, Routes } from 'discord.js';
 import 'dotenv/config';
+console.log('@ Imported command.js')
 
 // load env
 const TOKEN = process.env.CLIENT_TOKEN;
@@ -16,11 +17,11 @@ const commands = [
 const rest = new REST({ version: '10' }).setToken(TOKEN);
 
 try {
-  console.log('Started refreshing application (/) commands.');
+  console.log('# Started refreshing application (/) commands.');
 
   await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
 
-  console.log('Successfully reloaded application (/) commands.');
+  console.log('@ Successfully reloaded application (/) commands.');
 } catch (error) {
   console.error(error);
 }
