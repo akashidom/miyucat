@@ -11,8 +11,8 @@ export default {
     });
     if (DEBUG_MODE) console.log(defer);
     
-    const latency = interaction.createdAt - defer.interaction.createdAt
+    const latency = interaction.createdTimestamp - defer.interaction.createdTimestamp;
     
-    await interaction.editReply('Pong! <:happy:1454088304218734822>\n```latency : ' + lantency + 'ms````');
+    await interaction.editReply('Pong! <:happy:1454088304218734822>\n```latency : ' + latency + 'ms````');
   }
 };

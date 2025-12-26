@@ -44,7 +44,7 @@ try {
 
   // refresh app (/) commands
   await rest.put(Routes.applicationCommands(CLIENT_ID, DEBUG_MODE ? GUILD_ID: undefined), {
-    body: commands
+    body: Array.from(commands.values()).map(command => command.data.toJSON())
   });
 
   console.log('@ Successfully reloaded application (/) commands.');
