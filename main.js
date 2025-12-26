@@ -6,3 +6,4 @@ import 'dotenv/config';
 const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 
+await import './command.js'
