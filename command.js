@@ -11,7 +11,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const commands = [];
 const files = await readdir('./slash-commands/');
 for (const file of files) {
-  console.log(file)
+  import command from `./slash-commands/${file}`;
 }
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
