@@ -1,16 +1,22 @@
 // IMPORT
-import { Client, Events, GatewayIntentBits } from 'discord.js';
+import {
+  Client,
+  Events,
+  GatewayIntentBits
+} from 'discord.js';
 import 'dotenv/config';
 console.log('@ Imported main.js.')
 
 // load .env
-const DEBUG_MODE = process.env.DEBUG_MODE === "true";
+const DEBUG_MODE = process.env.DEBUG_MODE === 'true';
 const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
 
 // declare client
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client( {
+  intents: [GatewayIntentBits.Guilds]
+});
 client.on(Events.ClientReady, readyClient => {
   console.log(`===★★★ Logged in as ${readyClient.user.tag}! ★★★===}`);
 });
@@ -26,40 +32,45 @@ for (const file of files) {
 }
 
 // declare rest
-const rest = new REST({ version: '10' }).setToken(TOKEN);
+const rest = new REST( {
+  version: '10'
+}).setToken(TOKEN);
 try {
   console.log('# Started refreshing application (/) commands…');
   if (DEBUG_MODE) console.log('>>> Commands:', commands);
-  
+
   // refresh app (/) commands
-  await rest.put(Routes.applicationCommands(CLIENT_ID, DEBUG_MODE ? GUILD_ID: undefined), { body: commands });
-  
+  await rest.put(Routes.applicationCommands(CLIENT_ID, DEBUG_MODE ? GUILD_ID: undefined), {
+    body: commands
+  });
+
   console.log('@ Successfully reloaded application (/) commands.');
 } catch (error) {
   console.error('>@>@>@>@>@ Error occured while refreshing application (/) commands.', error);
 }
 
-// when app (/) command sent 
+// when app (/) command sent
 client.on(Events.InteractionCreate, async interaction => {
   if (!interaction.isChatInputCommand()) return;
-    if (DEBUG_MODE) console.log("[/]", interaction.user.tag, '→', interaction.commandName);
-const command = commands.get(interaction.commandName);
+  if (DEBUG_MODE) console.log('[/]', interaction.user.tag, '→', interaction.commandName);
+  const command = commands.get(interaction.commandName);
   if (!command) return;
-  
+
   try {
     await command.execute(interaction, DEBUG_MODE);
   } catch (error) {
     console.error(`>@>@>@>@>@ Error trying to execute /${interaction.commandName}:`, error);
     const content = `i fainted while trying to do /${interaction.commandName}… <:sad:1454182035244454153>`;
-    await interaction.reply({ content: , flags: 64 }).catch(() => {});
+    await interaction.reply({
+      content:, flags: 64
+    }).catch(() => {});
   }
 });
 
 // import commands
-console.log("# Importing command.js.")
+console.log('# Importing command.js.')
 await import('./command.js');
 
 /* LOG IN */
-console.log("= Logging in…")
+console.log('= Logging in…')
 client.login(TOKEN);
-
