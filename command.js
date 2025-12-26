@@ -9,9 +9,9 @@ const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 
 const commands = [];
-const files = await readdir();
+const files = await readdir('./');
 for (const file of files) {
-  import command from file;
+  console.log(file)
 }
 
 const rest = new REST({ version: '10' }).setToken(TOKEN);
