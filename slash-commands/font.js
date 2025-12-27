@@ -40,7 +40,7 @@ addFont('darkTextSquares', '🅳🅰🆁🅺 🆃🅴🆇🆃 🆂🆀🆄🅰�
 
 export default {
   data: new SlashCommandBuilder()
-  .setName('font')
+  .setName('font') 
   .setDescription('Replace font whatever text you sent ;) to the one you chose')
   .addStringOption(option => option
     .setName('message')
