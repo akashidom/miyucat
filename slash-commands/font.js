@@ -35,13 +35,9 @@ export default {
     const style = styles[font].split('');
     let content = '';
     
-    for (let letter of message) {
-      if (alphanumerics.contains(letter)) {
-        for (const part in alphanumerics) {
-          letter = letter.replace(alphanumerics[part], style[part])
-        }
-      }
-      content += letter;
+    for (const character of message) {
+      const index = alphanumerics.indexOf(character);
+      content += index === -1 ? character: style[index];
     }
   }
 };
