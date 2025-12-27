@@ -1,19 +1,18 @@
-
-
 import {
   SlashCommandBuilder
 } from 'discord.js';
 
-const fonts = [{
-  name: 'Ⓛⓘⓖⓗⓣ Ⓣⓔⓧⓣ Ⓑⓤⓑⓑⓛⓔⓢ', value: 'lightTextBubbles'
-},
-{
-  name: '🅓🅐🅡🅚 🅣🅔🅧🅣 🅑🅤🅑🅑🅛🅔🅢', value: 'darkTextBubbles'
-}];
-const styles = {
-  lightTextBubbles: 'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ ⓪①②③④⑤⑥⑦⑧⑨',
-  darkTextBubbles: '🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩 ⓿➊➋➌➍➎➏➐➑➒'
-};
+// font vars
+let fonts = [];
+let styles = new Map();
+function addFont(key, name, style) {
+  fonts.push({name:name,value:key});
+  styles.set(key, style);
+}
+
+/* add fonts */
+addFont('lightTextBubbles', 'Ⓛⓘⓖⓗⓣ Ⓣⓔⓧⓣ Ⓑⓤⓑⓑⓛⓔⓢ', 'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ ⓪①②③④⑤⑥⑦⑧⑨');
+addFont('darkTextBubbles', '🅓🅐🅡🅚 🅣🅔🅧🅣 🅑🅤🅑🅑🅛🅔🅢', '🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩 ⓿➊➋➌➍➎➏➐➑➒');
 
 export default {
   data: new SlashCommandBuilder()
@@ -32,7 +31,7 @@ export default {
     const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.split('');
     const font = interaction.options.getString('font', true);
     const message = Array.from(interaction.options.getString('message', true));
-    const style = Array.from(styles[font])
+    const style = Array.from(styles.get(font));
     let content = '';
     
     for (const character of message) {
