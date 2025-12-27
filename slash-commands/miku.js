@@ -1,6 +1,7 @@
 import {
   SlashCommandBuilder
 } from 'discord.js';
+import { search } from 'booru';
 
 export default {
   data: new SlashCommandBuilder()
@@ -10,5 +11,24 @@ export default {
   .setName("sensitive")
   .setDescription("with slightly more skin ;)")
   ),
-  async execute(interaction, DEBUG_MODE) {}
+  async execute(interaction, DEBUG_MODE) {
+    await interaction.deferReply();
+    let rating = 'rating:general';
+    if (interaction.options.getBoolean('sensitive')) {
+      rating = 'rating:sensitive';
+    }
+    
+    let post;
+    do {
+    post = await search('danbooru', ['hatsune_miku', rating], {
+      limit: 1,
+      random: true
+    })
+    if (DEBUG_MODE) console.log('>>> Post:', post)
+    } while (!post.fileUrl || post.fileUrl.endsWith('.mp4'))
+    
+    await interaction.editReply({
+      content: post.fileUrl;
+    })
+  }
 }
