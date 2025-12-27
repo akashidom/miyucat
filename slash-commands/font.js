@@ -45,13 +45,13 @@ export default {
   .setDescription('Enter message you want to apply the font :D')
   .setRequired(true))
   .addStringOption(option => option
-  .setName('font')
+  .setName('style')
   .setDescription('Pick the font you want to apply ;)')
   .addChoices(...fonts)
   .setRequired(true)),
   async execute(interaction, DEBUG_MODE) {
     const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.split('');
-    const font = interaction.options.getString('font', true);
+    const font = interaction.options.getString('style', true);
     const message = Array.from(interaction.options.getString('message', true));
     const style = Array.from(styles.get(font));
     let content = '';
