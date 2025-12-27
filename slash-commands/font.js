@@ -31,8 +31,8 @@ export default {
   async execute(interaction, DEBUG_MODE) {
     const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.split('');
     const font = interaction.options.getString('font', true);
-    const message = interaction.options.getString('message', true).split('');
-    const style = styles[font].split('');
+    const message = Array.from(interaction.options.getString('message', true));
+    const style = Array.from(styles[font])
     let content = '';
     
     for (const character of message) {
