@@ -30,5 +30,8 @@ export default {
   .setRequired(true)),
   async execute(interaction, DEBUG_MODE) {
     const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789';
+    const font = interaction.options.getString('font', true);
+    const message = interaction.options.getString('message', true);
+    const style = '';
   }
 };
