@@ -4,6 +4,9 @@ import {
   SlashCommandBuilder
 } from 'discord.js';
 
+const fonts = [{}];
+const fontStyles = [{}];
+
 export default {
   data: new SlashCommandBuilder()
   .setName('font')
@@ -15,7 +18,7 @@ export default {
   .addStringOption(option => option
   .setName('font')
   .setDescription('Pick the font you want to apply ;)')
-  .addChoices()
+  .addChoices(...fonts)
   .setRequired(true)),
   async execute(interaction, DEBUG_MODE) {}
 };
