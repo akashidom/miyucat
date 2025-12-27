@@ -13,7 +13,7 @@ export default {
     });
     if (DEBUG_MODE) console.log('>>> Response:', defer);
 
-    const latency = Date.now() - interaction.createdTimestamp;
+    const latency = Date.now() - interaction.createdTimestamp; // current time - message sent time
 
     await interaction.editReply('Pong! <:happy:1454088304218734822>\n```latency : ' + latency + ' ms```');
     if (DEBUG_MODE) {
