@@ -39,5 +39,7 @@ export default {
       const index = alphanumerics.indexOf(character);
       content += index === -1 ? character: style[index];
     }
+    
+    await interaction.reply(content);
   }
 };
