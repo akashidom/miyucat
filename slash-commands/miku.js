@@ -20,10 +20,12 @@ export default {
     
     let post;
     do {
-    post = await search('danbooru', ['hatsune_miku', rating], {
+    const posts = await search('danbooru', ['hatsune_miku', rating], {
       limit: 1,
       random: true
     })
+      post = posts[0];
+      
     if (DEBUG_MODE) console.log('>>> Post:', post)
     } while (!post.fileUrl || post.fileUrl.endsWith('.mp4'))
     
