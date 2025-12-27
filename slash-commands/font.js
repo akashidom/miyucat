@@ -1,5 +1,6 @@
 import {
-  SlashCommandBuilder
+  SlashCommandBuilder,
+  EmbedBuilder
 } from 'discord.js';
 
 // font vars
@@ -39,6 +40,9 @@ export default {
       content += index === -1 ? character: style[index];
     }
     
-    await interaction.reply({content: content});
+    const embed = new EmbedBuilder()
+    .setColor(0xFFFFFF)
+    .setDescription(content);
+    await interaction.reply({embed: [embed]});
   }
 };
