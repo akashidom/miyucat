@@ -15,7 +15,7 @@ export default {
 
     const latency = Date.now() - interaction.createdTimestamp;
 
-    await interaction.editReply('Pong! <:happy:1454088304218734822>\n```latency : ' + latency + 'ms```');
+    await interaction.editReply('Pong! <:happy:1454088304218734822>\n```latency : ' + latency + ' ms```');
     if (DEBUG_MODE) {
       console.log('>>> Ping Latency:', latency, 'ms');
       console.log('>>> API Latency:', interaction.client.ws.ping, 'ms');
