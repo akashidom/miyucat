@@ -9,9 +9,18 @@ export default {
   data: new SlashCommandBuilder()
   .setName('miku')
   .setDescription('Shows random miku in the chat /owo\\')
-  .addBooleanOption(option => option
-    .setName("sensitive")
-    .setDescription("with slightly more skin ;)")
+  .addStringOption(option => option
+    .setName("rating")
+    .setDescription("o.0 pick the image kind (warning: nsfw)")
+    .addChoices([{
+      name: 'general', value: 'general'
+    },
+      {
+        name: 'sensitive', value: 'sensitive'
+      },
+      {
+        name: 'explicit', value: 'questionable,explicit'
+      }])
   ),
   async execute(interaction, DEBUG_MODE) {
     await interaction.deferReply();
