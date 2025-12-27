@@ -29,9 +29,21 @@ export default {
   .addChoices(...fonts)
   .setRequired(true)),
   async execute(interaction, DEBUG_MODE) {
-    const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789';
+    const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.split();
     const font = interaction.options.getString('font', true);
-    const message = interaction.options.getString('message', true);
-    const style = styles[font];
+    const message = interaction.options.getString('message', true).split();
+    const style = styles[font].split();
+    let content = '';
+    
+    for (let part in message) {
+      if (alphanumerics.contains(letter)) {
+        let counter = 0;
+        for (const letter in alphanumerics) {
+          part = part.replace(letter, style[counter])
+          counter++;
+        }
+      }
+      content += part;
+    }
   }
 };
