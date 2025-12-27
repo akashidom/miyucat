@@ -20,5 +20,7 @@ export default {
   .setDescription('Pick the font you want to apply ;)')
   .addChoices(...fonts)
   .setRequired(true)),
-  async execute(interaction, DEBUG_MODE) {}
+  async execute(interaction, DEBUG_MODE) {
+    const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  }
 };
