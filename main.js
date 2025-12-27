@@ -1,4 +1,3 @@
-// IMPORT
 import {
   Client,
   Events,
@@ -70,7 +69,7 @@ client.on(Events.InteractionCreate, async interaction => {
       }).catch(() => {});
     } else {
       await interaction.reply({
-        content, ephemeral: true
+        content, flags: 64
       }).catch(() => {});
     }
   }
