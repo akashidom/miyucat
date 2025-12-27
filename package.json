@@ -18,8 +18,8 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "apt update -y && apt full-upgrade -y && npm update -y && echo '# Starting…' && DEBUG_MODE=false node main.js",
-    "test": "echo '# Starting…' && DEBUG_MODE=true node main.js"
+    "start": "sh sync.sh && apt update -y && apt full-upgrade -y && npm update -y && clear && echo '# Starting…' && DEBUG_MODE=false node main.js",
+    "test": "sh sync.sh && clear && echo '# Starting…' && DEBUG_MODE=true node main.js"
   },
   "dependencies": {
     "booru": "^2.8.1",
