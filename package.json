@@ -18,8 +18,8 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "apt update -y && apt full-upgrade -y && DEBUG_MODE=false node main.js",
-    "test": "DEBUG_MODE=true node main.js"
+    "start": "apt update -y && apt full-upgrade -y && npm update && echo '# Starting…' && DEBUG_MODE=false node main.js",
+    "test": "echo '# Starting…' && DEBUG_MODE=true node main.js"
   },
   "dependencies": {
     "discord.js": "^14.25.1",
