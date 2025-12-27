@@ -5,7 +5,7 @@ import {
 export default {
   data: new SlashCommandBuilder()
   .setName('ping')
-  .setDescription('Replies with pong! :3 also checks how laggy the server is'),
+  .setDescription('Replies with pong! :3 also checks how laggy the bo is'),
   async execute(interaction, DEBUG_MODE) {
     const defer = await interaction.deferReply({
       flags: 64,
