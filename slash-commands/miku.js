@@ -28,7 +28,7 @@ export default {
     } while (!post.fileUrl || post.fileUrl.endsWith('.mp4'))
     
     await interaction.editReply({
-      content: post.fileUrl;
+      content: post.fileUrl
     })
   }
 }
