@@ -23,15 +23,22 @@ export default {
       }])
   ),
   async execute(interaction, DEBUG_MODE) {
-    await interaction.deferReply();
-    let rating = 'rating:general';
-    if (interaction.options.getBoolean('sensitive')) {
-      rating = 'rating:sensitive';
+    let flags = 0;
+    let rating = interaction.options.getString('rating');
+    if (!rating) {
+      rating = 'general';
+    } else if (rating === 'questionable,explicit') {
+      if (!interaction.channel.nsfw) {
+        flags = 64;
+      }
     }
+    await interaction.deferReply({
+      flags: flags
+    });
 
     let post;
     do {
-      const posts = await search('danbooru', ['hatsune_miku', rating], {
+      const posts = await search('danbooru', ['hatsune_miku', 'rating:' + rating], {
         limit: 1,
         random: true
       })
