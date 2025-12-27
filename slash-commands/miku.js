@@ -28,7 +28,7 @@ export default {
     if (!rating) {
       rating = 'general';
     } else if (rating === 'questionable,explicit') {
-      if (!interaction.channel.nsfw) {
+      if (!interaction.channel?.nsfw || !interaction.channel) {
         flags = 64;
       }
     }
