@@ -40,6 +40,6 @@ export default {
       content += index === -1 ? character: style[index];
     }
     
-    await interaction.reply(content);
+    await interaction.reply({content: content});
   }
 };
