@@ -29,21 +29,19 @@ export default {
   .addChoices(...fonts)
   .setRequired(true)),
   async execute(interaction, DEBUG_MODE) {
-    const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.split();
+    const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789'.split('');
     const font = interaction.options.getString('font', true);
-    const message = interaction.options.getString('message', true).split();
-    const style = styles[font].split();
+    const message = interaction.options.getString('message', true).split('');
+    const style = styles[font].split('');
     let content = '';
     
-    for (let part in message) {
+    for (let letter of message) {
       if (alphanumerics.contains(letter)) {
-        let counter = 0;
-        for (const letter in alphanumerics) {
-          part = part.replace(letter, style[counter])
-          counter++;
+        for (const part in alphanumerics) {
+          letter = letter.replace(alphanumerics[part], style[part])
         }
       }
-      content += part;
+      content += letter;
     }
   }
 };
