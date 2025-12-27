@@ -22,6 +22,7 @@
     "test": "echo '# Starting…' && DEBUG_MODE=true node main.js"
   },
   "dependencies": {
+    "booru": "^2.8.1",
     "discord.js": "^14.25.1",
     "dotenv": "^17.2.3"
   },
