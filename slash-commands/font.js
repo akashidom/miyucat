@@ -21,6 +21,6 @@ export default {
   .addChoices(...fonts)
   .setRequired(true)),
   async execute(interaction, DEBUG_MODE) {
-    const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789';
   }
 };
