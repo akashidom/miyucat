@@ -62,7 +62,6 @@ export default {
     }
     
     const embed = new EmbedBuilder()
-    .setColor(0xFFFFFF)
     .setDescription(content);
     await interaction.reply({embeds: [embed]});
   }
