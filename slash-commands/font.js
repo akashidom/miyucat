@@ -10,7 +10,7 @@ const fonts = [{
 {
   label: '🅓🅐🅡🅚 🅣🅔🅧🅣 🅑🅤🅑🅑🅛🅔🅢', value: 'darkTextBubbles'
 }];
-const fontStyles = {
+const styles = {
   lightTextBubbles: 'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ ⓪①②③④⑤⑥⑦⑧⑨',
   darkTextBubbles: '🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩 ⓿➊➋➌➍➎➏➐➑➒'
 };
@@ -32,6 +32,6 @@ export default {
     const alphanumerics = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789';
     const font = interaction.options.getString('font', true);
     const message = interaction.options.getString('message', true);
-    const style = '';
+    const style = styles[font];
   }
 };
