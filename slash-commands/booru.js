@@ -87,4 +87,30 @@ export default [{
   async execute(interaction, DEBUG_MODE) {
     return reply(interaction, DEBUG_MODE, 'gumi');
   }
-}]
+},
+{
+  data: new SlashCommandBuilder()
+  .setName('booru yaoi')
+  .setDescription('Shows random bl in the chat //')
+  .addStringOption(option => option
+    .setName("rating")
+    .setDescription("o.0 pick the image kind (warning: nsfw)")
+    .addChoices(ratings)
+  ),
+  async execute(interaction, DEBUG_MODE) {
+    return reply(interaction, DEBUG_MODE, 'yaoi');
+  }
+},
+{
+  data: new SlashCommandBuilder()
+  .setName('booru yuri')
+  .setDescription('Shows random gl in the chat <>')
+  .addStringOption(option => option
+    .setName("rating")
+    .setDescription("o.0 pick the image kind (warning: nsfw)")
+    .addChoices(ratings)
+  ),
+  async execute(interaction, DEBUG_MODE) {
+    return reply(interaction, DEBUG_MODE, 'yuri');
+  }
+}];
