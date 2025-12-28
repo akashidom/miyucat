@@ -58,6 +58,36 @@ export default [{
   .setDescription('Shows random image from danbooru :E')
 
   .addSubcommand(sub => sub
+    .setName('jojo')
+    .setDescription('Summons jojo character in the chat (to be cotinued…)')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
+  .addSubcommand(sub => sub
+    .setName('alnst')
+    .setDescription('Summons alien stage character in the chat aaaAaa')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
+  .addSubcommand(sub => sub
+    .setName('ddlc')
+    .setDescription('Summons doki doki character in the chat <3')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
+  .addSubcommand(sub => sub
     .setName('miku')
     .setDescription('Summons miku in the chat /owo\\')
     .addStringOption(option => option
@@ -86,7 +116,37 @@ export default [{
       .addChoices(...ratings)
     )
   )
+  
+  .addSubcommand(sub => sub
+    .setName('haku')
+    .setDescription('Summons haku in the chat 3')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
+  .addSubcommand(sub => sub
+    .setName('kafu')
+    .setDescription('Summons kafu in the chat O')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
 
+  .addSubcommand(sub => sub
+    .setName('femboy')
+    .setDescription('Summons femboy in the chat >:)')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
   .addSubcommand(sub => sub
     .setName('yaoi')
     .setDescription('Sends BL in the chat //')
@@ -109,9 +169,15 @@ export default [{
   async execute(interaction, DEBUG_MODE) {
     const sub = interaction.options.getSubcommand();
     const tags = {
+      jojo: 'jojo_no_kimyou_na_bouken',
+      alnst: 'alien_stage',
+      ddlc: 'doki_doki_literature_club',
       miku: 'hatsune_miku',
       teto: 'kasane_teto',
       gumi: 'gumi',
+      haku: 'yowane_haku',
+      kafu: 'kafu_(cevio)',
+      femboy: 'femboy'
       yaoi: 'gay',
       yuri: 'yuri'
     }
