@@ -77,6 +77,26 @@ export default [{
     )
   )
   
+    .addSubcommand(sub => sub
+    .setName('uma')
+    .setDescription('Summons umamusume character in the chat (^-w-^)√')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
+    .addSubcommand(sub => sub
+    .setName('alnst')
+    .setDescription('Summons persona character in the chat PERSONA!')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
   .addSubcommand(sub => sub
     .setName('ddlc')
     .setDescription('Summons doki doki character in the chat <3')
@@ -137,6 +157,16 @@ export default [{
     )
   )
 
+    .addSubcommand(sub => sub
+    .setName('comic')
+    .setDescription('Sends story in the chat . . .')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
   .addSubcommand(sub => sub
     .setName('femboy')
     .setDescription('Summons femboy in the chat >:)')
@@ -165,21 +195,35 @@ export default [{
       .setDescription("o.0 pick the image kind (warning: nsfw)")
       .addChoices(...ratings)
     )
+  )
+  
+    .addSubcommand(sub => sub
+    .setName('furry')
+    .setDescription('Summons furry in the chat :3')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
   ),
   async execute(interaction, DEBUG_MODE) {
     const sub = interaction.options.getSubcommand();
     const tags = {
       jojo: 'jojo_no_kimyou_na_bouken',
       alnst: 'alien_stage',
+      uma: 'umamusume',
+      persona: 'persona',
       ddlc: 'doki_doki_literature_club',
       miku: 'hatsune_miku',
       teto: 'kasane_teto',
       gumi: 'gumi',
       haku: 'yowane_haku',
       kafu: 'kafu_(cevio)',
+      comic: 'comic',
       femboy: 'femboy',
       yaoi: 'gay',
-      yuri: 'yuri'
+      yuri: 'yuri',
+      furry: 'furry'
     }
     return reply(interaction, DEBUG_MODE, tags[sub]);
   }
