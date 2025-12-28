@@ -177,7 +177,7 @@ export default [{
       gumi: 'gumi',
       haku: 'yowane_haku',
       kafu: 'kafu_(cevio)',
-      femboy: 'femboy'
+      femboy: 'femboy',
       yaoi: 'gay',
       yuri: 'yuri'
     }
