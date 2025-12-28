@@ -13,13 +13,13 @@ export default {
     .setName("rating")
     .setDescription("o.0 pick the image kind (warning: nsfw)")
     .addChoices([{
-      name: 'general', value: 'general'
+      name: 'General', value: 'general'
     },
       {
-        name: 'sensitive', value: 'sensitive'
+        name: 'Possibly sensitive', value: 'sensitive'
       },
       {
-        name: 'explicit', value: 'questionable,explicit'
+        name: 'NSFW', value: 'questionable,explicit'
       }])
   ),
   async execute(interaction, DEBUG_MODE) {
@@ -46,7 +46,7 @@ export default {
       post = posts[0];
 
       if (DEBUG_MODE) console.log('>>> Post:', post)
-    } while (!post.fileUrl || post.fileUrl.endsWith('.mp4'))
+    } while (!post.fileUrl || /\.(mp4|zip|webm)$/i.test(post.fileUrl ?? ''))
 
       await interaction.editReply({
       content: post.fileUrl
