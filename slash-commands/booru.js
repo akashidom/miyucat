@@ -21,7 +21,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
     flags: flags
   });
 
-  let post;
+  let post, tries = 0;
   do {
     const posts = await search('danbooru', [...tags, 'rating:' + rating], {
       limit: 1,
@@ -29,7 +29,9 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
     })
     post = posts[0];
 
+    tries++;
     if (DEBUG_MODE) console.log('>>> Post:', post)
+    if (tries > 6) throw new Error('>@>@>@>@>@ Error infinite loop while trying to execute:', interaction);
   } while (!post?.fileUrl || /\.(mp4|zip|webm)$/i.test(post.fileUrl ?? ''))
 
     await interaction.editReply({
