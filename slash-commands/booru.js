@@ -21,7 +21,8 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
     flags: flags
   });
 
-  let post, tries = 0;
+  let post,
+  tries = 0;
   do {
     const posts = await search('danbooru', [...tags, 'rating:' + rating], {
       limit: 1,
@@ -55,22 +56,65 @@ export default [{
   data: new SlashCommandBuilder()
   .setName('booru')
   .setDescription('Shows random image from danbooru :E')
-  
+
   .addSubcommand(sub => sub
-  .setName('miku')
-  .setDescription('Summons miku in the chat /owo\\')
-  .addStringOption(option => option
-    .setName("rating")
-    .setDescription("o.0 pick the image kind (warning: nsfw)")
-    .addChoices(...ratings)
+    .setName('miku')
+    .setDescription('Summons miku in the chat /owo\\')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
   )
+
+  .addSubcommand(sub => sub
+    .setName('teto')
+    .setDescription('Summons teto in the chat ∆.-.∆')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+
+  .addSubcommand(sub => sub
+    .setName('gumi')
+    .setDescription('Summons gumi in the chat (oDo)/')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+
+  .addSubcommand(sub => sub
+    .setName('yaoi')
+    .setDescription('Sends BL in the chat //')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+
+  .addSubcommand(sub => sub
+    .setName('yuri')
+    .setDescription('Sends GL in the chat <>')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
   ),
   async execute(interaction, DEBUG_MODE) {
     const sub = interaction.options.getSubcommand();
     const tags = {
-      miku: 'hatsune_miku'
+      miku: 'hatsune_miku',
+      teto: 'kasane_teto',
+      gumi: 'gumi',
+      yaoi: 'gay',
+      yuri: 'yuri'
     }
     return reply(interaction, DEBUG_MODE, tags[sub]);
   }
 }]
-
