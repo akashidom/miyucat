@@ -61,4 +61,17 @@ export default [{
   async execute(interaction, DEBUG_MODE) {
     return reply(interaction, DEBUG_MODE, 'hatsune_miku');
   }
+},
+{
+  data: new SlashCommandBuilder()
+  .setName('booru teto')
+  .setDescription('Shows random teto in the chat ∆.-.∆')
+  .addStringOption(option => option
+    .setName("rating")
+    .setDescription("o.0 pick the image kind (warning: nsfw)")
+    .addChoices(ratings)
+  ),
+  async execute(interaction, DEBUG_MODE) {
+    return reply(interaction, DEBUG_MODE, 'kasane_teto');
+  }
 }]
