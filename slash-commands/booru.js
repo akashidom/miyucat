@@ -88,7 +88,7 @@ export default [{
   )
   
     .addSubcommand(sub => sub
-    .setName('alnst')
+    .setName('persona')
     .setDescription('Summons persona character in the chat PERSONA!')
     .addStringOption(option => option
       .setName("rating")
