@@ -156,6 +156,26 @@ export default [{
       .addChoices(...ratings)
     )
   )
+  
+    .addSubcommand(sub => sub
+    .setName('demon')
+    .setDescription('Summons demon in the chat :>:)')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
+  
+    .addSubcommand(sub => sub
+    .setName('angel')
+    .setDescription('Summons angel in the chat O:)')
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+  )
 
     .addSubcommand(sub => sub
     .setName('comic')
@@ -219,6 +239,8 @@ export default [{
       gumi: 'gumi',
       haku: 'yowane_haku',
       kafu: 'kafu_(cevio)',
+      demon: 'demon',
+      angel: 'angel',
       comic: 'comic',
       femboy: 'femboy',
       yaoi: 'gay',
