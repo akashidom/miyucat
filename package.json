@@ -18,7 +18,7 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "sh sync.sh && apt update -y && apt full-upgrade -y && npm update -y && clear && echo '# Starting…' && DEBUG_MODE=false node main.js",
+    "start": "sh sync.sh && npm update -y && clear && echo '# Starting…' && DEBUG_MODE=false node main.js",
     "test": "sh sync.sh && clear && echo '# Starting…' && DEBUG_MODE=true node main.js"
   },
   "dependencies": {
