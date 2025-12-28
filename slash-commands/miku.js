@@ -36,6 +36,18 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
     content: post.fileUrl
   })
 }
+const ratings = [{
+  name: 'General',
+  value: 'general'
+},
+  {
+    name: 'Possibly sensitive',
+    value: 'sensitive'
+  },
+  {
+    name: 'NSFW',
+    value: 'questionable,explicit'
+  }];
 
 export default [{
   data: new SlashCommandBuilder()
@@ -44,15 +56,7 @@ export default [{
   .addStringOption(option => option
     .setName("rating")
     .setDescription("o.0 pick the image kind (warning: nsfw)")
-    .addChoices([{
-      name: 'General', value: 'general'
-    },
-      {
-        name: 'Possibly sensitive', value: 'sensitive'
-      },
-      {
-        name: 'NSFW', value: 'questionable,explicit'
-      }])
+    .addChoices(ratings)
   ),
   async execute(interaction, DEBUG_MODE) {
     return reply(interaction, DEBUG_MODE, 'hatsune_miku');
