@@ -66,7 +66,11 @@ export default [{
   )
   ),
   async execute(interaction, DEBUG_MODE) {
-    return reply(interaction, DEBUG_MODE, 'hatsune_miku');
+    const sub = interaction.options.getSubcommand();
+    const tags = {
+      miku: 'hatsune_miku'
+    }
+    return reply(interaction, DEBUG_MODE, tags[sub]);
   }
 }]
 
