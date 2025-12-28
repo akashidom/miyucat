@@ -37,7 +37,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
   })
 }
 
-export default {
+export default [{
   data: new SlashCommandBuilder()
   .setName('miku')
   .setDescription('Shows random miku in the chat /owo\\')
@@ -57,4 +57,4 @@ export default {
   async execute(interaction, DEBUG_MODE) {
     return reply(interaction, DEBUG_MODE, 'hatsune_miku');
   }
-}
+}]
