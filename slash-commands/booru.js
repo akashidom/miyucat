@@ -74,4 +74,17 @@ export default [{
   async execute(interaction, DEBUG_MODE) {
     return reply(interaction, DEBUG_MODE, 'kasane_teto');
   }
+},
+{
+  data: new SlashCommandBuilder()
+  .setName('booru gumi')
+  .setDescription('Shows random gumi in the chat :D/')
+  .addStringOption(option => option
+    .setName("rating")
+    .setDescription("o.0 pick the image kind (warning: nsfw)")
+    .addChoices(ratings)
+  ),
+  async execute(interaction, DEBUG_MODE) {
+    return reply(interaction, DEBUG_MODE, 'gumi');
+  }
 }]
