@@ -51,7 +51,7 @@ const ratings = [{
 
 export default [{
   data: new SlashCommandBuilder()
-  .setName('miku')
+  .setName('booru miku')
   .setDescription('Shows random miku in the chat /owo\\')
   .addStringOption(option => option
     .setName("rating")
