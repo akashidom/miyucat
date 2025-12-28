@@ -29,8 +29,14 @@ const files = fs.readdirSync('./slash-commands/').filter(file => file.endsWith('
 
 // push commands
 for (const file of files) {
-  const command = await import(`./slash-commands/${file}`);
-  commands.set(command.default.data.name, command.default);
+  const { default: command } = await import(`./slash-commands/${file}`);
+  if (!Array.isArray(command)) {
+  commands.set(command.data.name, command);
+  } else {
+    for (const sub of command) {
+      commands.set(sub.data.name, sub)
+    }
+  }
 }
 
 // declare rest
