@@ -28,6 +28,7 @@ export default {
     if (!rating) {
       rating = 'general';
     } else if (rating === 'questionable,explicit') {
+      // note : no need to check if it's dm since if it's not in channel it'll flags 64 anyway
       if (!interaction.channel?.nsfw || !interaction.channel) {
         flags = 64;
       }
