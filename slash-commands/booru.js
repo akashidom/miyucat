@@ -53,12 +53,17 @@ const ratings = [{
 
 export default [{
   data: new SlashCommandBuilder()
-  .setName('booru miku')
-  .setDescription('Shows random miku in the chat /owo\\')
+  .setName('booru')
+  .setDescription('Shows random image from danbooru :E')
+  
+  .addSubcommand(sub => sub
+  .setName('miku')
+  .setDescription('Summons miku in the chat /owo\\')
   .addStringOption(option => option
     .setName("rating")
     .setDescription("o.0 pick the image kind (warning: nsfw)")
-    .addChoices(ratings)
+    .addChoices(...ratings)
+  )
   ),
   async execute(interaction, DEBUG_MODE) {
     return reply(interaction, DEBUG_MODE, 'hatsune_miku');
