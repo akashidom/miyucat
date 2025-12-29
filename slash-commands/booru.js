@@ -9,6 +9,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
   tags = Array.isArray(tags) ? tags: [tags];
   let flags = 0;
   let rating = interaction.options.getString('rating');
+  /*
   if (!rating) {
     rating = 'general';
   } else if (rating === 'sensitive' || rating === 'questionable,explicit') {
@@ -17,6 +18,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
       flags = 64;
     }
   }
+  */
   await interaction.deferReply({
     flags: flags
   });
@@ -52,7 +54,8 @@ function newSubcommand(name, description, tag) {
     .addChoices({
       name: 'General',
       value: 'general'
-    },
+    }
+  /*,
       {
         name: 'Possibly sensitive',
         value: 'sensitive'
@@ -60,7 +63,8 @@ function newSubcommand(name, description, tag) {
       {
         name: 'NSFW',
         value: 'questionable,explicit'
-      })
+      }
+  */)
   )
 }
 export default [{
