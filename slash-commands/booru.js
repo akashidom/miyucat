@@ -7,19 +7,12 @@ import {
 
 async function reply(interaction, DEBUG_MODE, tags = []) {
   tags = Array.isArray(tags) ? tags: [tags];
-  let flags = 0;
-  let rating = interaction.options.getString('rating');
-  if (!rating) {
-    rating = 'general';
-  } 
-  /* 
-    else if (rating === 'sensitive' || rating === 'questionable,explicit') {
-    // note : no need to check if it's dm since if it's not in channel it'll flags 64 anyway
-    if (!interaction.channel?.nsfw || !interaction.channel) {
-      flags = 64;
-    }
+  let flags = 0, booru = 'safebooru';
+  const sensitive = interaction.options.getBoolean('sensitive');
+  if (sensitive) {
+    flags = 64;
+    booru = 'danbooru';
   }
-  */
   await interaction.deferReply({
     flags: flags
   });
@@ -27,7 +20,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
   let post,
   tries = 0;
   do {
-    const posts = await search('danbooru', [...tags, 'rating:' + rating], {
+    const posts = await search(booru, [...tags, '-rating:explicit'], {
       limit: 1,
       random: true
     })
@@ -35,7 +28,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
 
     tries++;
     if (DEBUG_MODE) console.log('>>> Post:', post)
-    if (tries > 6) throw new Error('>@>@>@>@>@ Error infinite loop while trying to execute:', interaction);
+    if (tries > 20) throw new Error('>@>@>@>@>@ Error infinite loop while trying to execute:', interaction);
   } while (!post?.fileUrl || /\.(mp4|zip|webm)$/i.test(post.fileUrl ?? ''))
 
     await interaction.editReply({
@@ -49,24 +42,9 @@ function newSubcommand(name, description, tag) {
   return subcommand => subcommand
   .setName(name)
   .setDescription(description)
-  .addStringOption(option => option
-    .setName("rating")
-    .setDescription("o.0 pick the image kind (warning: nsfw)")
-    .addChoices({
-      name: 'General',
-      value: 'general'
-    }
-  /*,
-      {
-        name: 'Possibly sensitive',
-        value: 'sensitive'
-      },
-      {
-        name: 'NSFW',
-        value: 'questionable,explicit'
-      }
-  */
-  )
+  .addBooleanOption(option => option
+    .setName("sensitive")
+    .setDescription("o.0 pick the image kind (warning: sensitive contains nsfw)")
   )
 }
 export default [{
