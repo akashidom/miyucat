@@ -2,6 +2,7 @@ import {
   Client,
   Events,
   GatewayIntentBits,
+  Partials,
   REST,
   Routes
 } from 'discord.js';
@@ -17,7 +18,8 @@ const GUILD_ID = process.env.GUILD_ID;
 
 // declare client
 const client = new Client( {
-  intents: [GatewayIntentBits.Guilds]
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent],
+  partials: [Partials.Channel, Partials.Message]
 });
 client.on(Events.ClientReady, readyClient => {
   console.log(`===★★★ Logged in as ${readyClient.user.tag}! ★★★===`);
