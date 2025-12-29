@@ -51,7 +51,16 @@ const ratings = [{
     name: 'NSFW',
     value: 'questionable,explicit'
   }];
-
+function newSubcommand(name, description) {
+  return subcommand => subcommand
+    .setName(name)
+    .setDescription(description)
+    .addStringOption(option => option
+      .setName("rating")
+      .setDescription("o.0 pick the image kind (warning: nsfw)")
+      .addChoices(...ratings)
+    )
+}
 export default [{
   data: new SlashCommandBuilder()
   .setName('booru')
