@@ -36,9 +36,9 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
   })
 }
 
-let tags = new Map();
+let tagMap = new Map();
 function newSubcommand(name, description, tag) {
-  tags.set(name, tag);
+  tagMap.set(name, tag);
   return subcommand => subcommand
   .setName(name)
   .setDescription(description)
@@ -95,6 +95,6 @@ export default [{
     const subcommand = interaction.options.getSubcommand();
     return reply(interaction,
       DEBUG_MODE,
-      tags.get(subcommand));
+      tagMap.get(subcommand));
   }
 }];
