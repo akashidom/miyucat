@@ -95,9 +95,7 @@ export default [{
   .addSubcommand(newSubcommand('demon', 'Summons demon in the chat :>:)', 'demon'))
 
   .addSubcommand(newSubcommand('angel', 'Summons angel in the chat O:)', 'angel'))
-
-  .addSubcommand(newSubcommand('comic', 'Sends story in the chat . . .', 'comic'))
-
+  
   .addSubcommand(newSubcommand('neko', 'Summons cat girl in the chat <:3', 'cat_girl'))
   
   .addSubcommand(newSubcommand('catboy', 'Summons cat boy in the chat >:3', 'cat_boy'))
