@@ -11,7 +11,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
   let rating = interaction.options.getString('rating');
   if (!rating) {
     rating = 'general';
-  } else if (rating === 'questionable,explicit') {
+  } else if (rating === 'sensitive' || rating === 'questionable,explicit') {
     // note : no need to check if it's dm since if it's not in channel it'll flags 64 anyway
     if (!interaction.channel?.nsfw || !interaction.channel) {
       flags = 64;
