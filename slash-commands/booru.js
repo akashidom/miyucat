@@ -39,27 +39,26 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
     content: post.fileUrl
   })
 }
-const ratings = [{
-  name: 'General',
-  value: 'general'
-},
-  {
-    name: 'Possibly sensitive',
-    value: 'sensitive'
-  },
-  {
-    name: 'NSFW',
-    value: 'questionable,explicit'
-  }];
 function newSubcommand(name, description) {
   return subcommand => subcommand
-    .setName(name)
-    .setDescription(description)
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
+  .setName(name)
+  .setDescription(description)
+  .addStringOption(option => option
+    .setName("rating")
+    .setDescription("o.0 pick the image kind (warning: nsfw)")
+    .addChoices({
+      name: 'General',
+      value: 'general'
+    },
+      {
+        name: 'Possibly sensitive',
+        value: 'sensitive'
+      },
+      {
+        name: 'NSFW',
+        value: 'questionable,explicit'
+      })
+  )
 }
 export default [{
   data: new SlashCommandBuilder()
@@ -67,39 +66,40 @@ export default [{
   .setDescription('Shows random image from danbooru :E')
 
   .addSubcommand(newSubcommand('jojo', 'Summons jojo character in the chat (to be cotinued…)'))
-  
+
   .addSubcommand(newSubcommand('alnst', 'Summons alien stage character in the chat aaaAaa'))
-  
+
   .addSubcommand(newSubcommand('uma', 'Summons umamusume character in the chat (^-w-^)√'))
-  
+
   .addSubcommand(newSubcommand('persona', 'Summons persona character in the chat PERSONA!'))
-  
+
   .addSubcommand(newSubcommand('ddlc', 'Summons doki doki character in the chat <3'))
-  
+
   .addSubcommand(newSubcommand('miku', 'Summons miku in the chat /owo\\'))
 
   .addSubcommand(newSubcommand('teto', 'Summons teto in the chat ∆.-.∆'))
 
   .addSubcommand(newSubcommand('gumi', 'Summons gumi in the chat (oDo)/'))
-  
+
   .addSubcommand(newSubcommand('haku', 'Summons haku in the chat 3')))
-  
+
   .addSubcommand(newSubcommand('kafu', 'Summons kafu in the chat O'))
-  
+
   .addSubcommand(newSubcommand('demon', 'Summons demon in the chat :>:)'))
-  
+
   .addSubcommand(newSubcommand('angel', 'Summons angel in the chat O:)'))
 
   .addSubcommand(newSubcommand('comic', 'Sends story in the chat . . .'))
-  
+
   .addSubcommand(newSubcommand('femboy', 'Summons femboy in the chat >:)'))
-  
+
   .addSubcommand(newSubcommand('yaoi', 'Sends BL in the chat //'))
 
   .addSubcommand(newSubcommand('yuri', 'Sends GL in the chat <>'))
-  
+
   .addSubcommand(newSubcommand('furry', 'Summons furry in the chat :3')),
-  async execute(interaction, DEBUG_MODE) {
+  async execute(interaction,
+    DEBUG_MODE) {
     const sub = interaction.options.getSubcommand();
     const tags = {
       jojo: 'jojo_no_kimyou_na_bouken',
@@ -120,6 +120,8 @@ export default [{
       yuri: 'yuri',
       furry: 'furry'
     }
-    return reply(interaction, DEBUG_MODE, tags[sub]);
+    return reply(interaction,
+      DEBUG_MODE,
+      tags[sub]);
   }
 }]
