@@ -39,26 +39,10 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
     content: post.fileUrl
   })
 }
-const tags = {
-  jojo: 'jojo_no_kimyou_na_bouken',
-  alnst: 'alien_stage',
-  uma: 'umamusume',
-  persona: 'persona',
-  ddlc: 'doki_doki_literature_club',
-  miku: 'hatsune_miku',
-  teto: 'kasane_teto',
-  gumi: 'gumi',
-  haku: 'yowane_haku',
-  kafu: 'kafu_(cevio)',
-  demon: 'demon',
-  angel: 'angel',
-  comic: 'comic',
-  femboy: 'femboy',
-  yaoi: 'gay',
-  yuri: 'yuri',
-  furry: 'furry'
-}
-function newSubcommand(name, description) {
+
+let tags = new Map();
+function newSubcommand(name, description, tag) {
+  tags.set(name, tag);
   return subcommand => subcommand
   .setName(name)
   .setDescription(description)
@@ -84,44 +68,44 @@ export default [{
   .setName('booru')
   .setDescription('Shows random image from danbooru :E')
 
-  .addSubcommand(newSubcommand('jojo', 'Summons jojo character in the chat (to be cotinued…)'))
+  .addSubcommand(newSubcommand('jojo', 'Summons jojo character in the chat (to be cotinued…)', 'jojo_no_kimyou_na_bouken'))
 
-  .addSubcommand(newSubcommand('alnst', 'Summons alien stage character in the chat aaaAaa'))
+  .addSubcommand(newSubcommand('alnst', 'Summons alien stage character in the chat aaaAaa', 'alien_stage'))
 
-  .addSubcommand(newSubcommand('uma', 'Summons umamusume character in the chat (^-w-^)√'))
+  .addSubcommand(newSubcommand('uma', 'Summons umamusume character in the chat (^-w-^)√', 'umamusume'))
 
-  .addSubcommand(newSubcommand('persona', 'Summons persona character in the chat PERSONA!'))
+  .addSubcommand(newSubcommand('persona', 'Summons persona character in the chat PERSONA!', 'persona'))
 
-  .addSubcommand(newSubcommand('ddlc', 'Summons doki doki character in the chat <3'))
+  .addSubcommand(newSubcommand('ddlc', 'Summons doki doki character in the chat <3', 'doki_doki_literature_club'))
 
-  .addSubcommand(newSubcommand('miku', 'Summons miku in the chat /owo\\'))
+  .addSubcommand(newSubcommand('miku', 'Summons miku in the chat /owo\\', 'hatsune_miku'))
 
-  .addSubcommand(newSubcommand('teto', 'Summons teto in the chat ∆.-.∆'))
+  .addSubcommand(newSubcommand('teto', 'Summons teto in the chat ∆.-.∆', 'kasane_teto'))
 
-  .addSubcommand(newSubcommand('gumi', 'Summons gumi in the chat (oDo)/'))
+  .addSubcommand(newSubcommand('gumi', 'Summons gumi in the chat (oDo)/', 'gumi'))
 
-  .addSubcommand(newSubcommand('haku', 'Summons haku in the chat 3')))
+  .addSubcommand(newSubcommand('haku', 'Summons haku in the chat 3', 'yowane_haku'))
 
-  .addSubcommand(newSubcommand('kafu', 'Summons kafu in the chat O'))
+  .addSubcommand(newSubcommand('kafu', 'Summons kafu in the chat O', 'kafu_(cevio)'))
 
-  .addSubcommand(newSubcommand('demon', 'Summons demon in the chat :>:)'))
+  .addSubcommand(newSubcommand('demon', 'Summons demon in the chat :>:)', 'demon'))
 
-  .addSubcommand(newSubcommand('angel', 'Summons angel in the chat O:)'))
+  .addSubcommand(newSubcommand('angel', 'Summons angel in the chat O:)', 'angel'))
 
-  .addSubcommand(newSubcommand('comic', 'Sends story in the chat . . .'))
+  .addSubcommand(newSubcommand('comic', 'Sends story in the chat . . .', 'comic'))
 
-  .addSubcommand(newSubcommand('femboy', 'Summons femboy in the chat >:)'))
+  .addSubcommand(newSubcommand('femboy', 'Summons femboy in the chat >:)', 'femboy'))
 
-  .addSubcommand(newSubcommand('yaoi', 'Sends BL in the chat //'))
+  .addSubcommand(newSubcommand('yaoi', 'Sends BL in the chat //', 'gay'))
 
-  .addSubcommand(newSubcommand('yuri', 'Sends GL in the chat <>'))
+  .addSubcommand(newSubcommand('yuri', 'Sends GL in the chat <>', 'yuri'))
 
-  .addSubcommand(newSubcommand('furry', 'Summons furry in the chat :3')),
+  .addSubcommand(newSubcommand('furry', 'Summons furry in the chat :3', 'furry')),
   async execute(interaction,
     DEBUG_MODE) {
-    const sub = interaction.options.getSubcommand();
+    const subcommand = interaction.options.getSubcommand();
     return reply(interaction,
       DEBUG_MODE,
-      tags[sub]);
+      tags.get(subcommand));
   }
-}]
+}];
