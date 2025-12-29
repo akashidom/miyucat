@@ -66,175 +66,39 @@ export default [{
   .setName('booru')
   .setDescription('Shows random image from danbooru :E')
 
-  .addSubcommand(sub => sub
-    .setName('jojo')
-    .setDescription('Summons jojo character in the chat (to be cotinued…)')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('jojo', 'Summons jojo character in the chat (to be cotinued…)'))
   
-  .addSubcommand(sub => sub
-    .setName('alnst')
-    .setDescription('Summons alien stage character in the chat aaaAaa')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('alnst', 'Summons alien stage character in the chat aaaAaa'))
   
-    .addSubcommand(sub => sub
-    .setName('uma')
-    .setDescription('Summons umamusume character in the chat (^-w-^)√')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('uma', 'Summons umamusume character in the chat (^-w-^)√'))
   
-    .addSubcommand(sub => sub
-    .setName('persona')
-    .setDescription('Summons persona character in the chat PERSONA!')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('persona', 'Summons persona character in the chat PERSONA!'))
   
-  .addSubcommand(sub => sub
-    .setName('ddlc')
-    .setDescription('Summons doki doki character in the chat <3')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('ddlc', 'Summons doki doki character in the chat <3'))
   
-  .addSubcommand(sub => sub
-    .setName('miku')
-    .setDescription('Summons miku in the chat /owo\\')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('miku', 'Summons miku in the chat /owo\\'))
 
-  .addSubcommand(sub => sub
-    .setName('teto')
-    .setDescription('Summons teto in the chat ∆.-.∆')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('teto', 'Summons teto in the chat ∆.-.∆'))
 
-  .addSubcommand(sub => sub
-    .setName('gumi')
-    .setDescription('Summons gumi in the chat (oDo)/')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('gumi', 'Summons gumi in the chat (oDo)/'))
   
-  .addSubcommand(sub => sub
-    .setName('haku')
-    .setDescription('Summons haku in the chat 3')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('haku', 'Summons haku in the chat 3')))
   
-  .addSubcommand(sub => sub
-    .setName('kafu')
-    .setDescription('Summons kafu in the chat O')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('kafu', 'Summons kafu in the chat O'))
   
-    .addSubcommand(sub => sub
-    .setName('demon')
-    .setDescription('Summons demon in the chat :>:)')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('demon', 'Summons demon in the chat :>:)'))
   
-    .addSubcommand(sub => sub
-    .setName('angel')
-    .setDescription('Summons angel in the chat O:)')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('angel', 'Summons angel in the chat O:)'))
 
-    .addSubcommand(sub => sub
-    .setName('comic')
-    .setDescription('Sends story in the chat . . .')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('comic', 'Sends story in the chat . . .'))
   
-  .addSubcommand(sub => sub
-    .setName('femboy')
-    .setDescription('Summons femboy in the chat >:)')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('femboy', 'Summons femboy in the chat >:)'))
   
-  .addSubcommand(sub => sub
-    .setName('yaoi')
-    .setDescription('Sends BL in the chat //')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('yaoi', 'Sends BL in the chat //'))
 
-  .addSubcommand(sub => sub
-    .setName('yuri')
-    .setDescription('Sends GL in the chat <>')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  )
+  .addSubcommand(newSubcommand('yuri', 'Sends GL in the chat <>'))
   
-    .addSubcommand(sub => sub
-    .setName('furry')
-    .setDescription('Summons furry in the chat :3')
-    .addStringOption(option => option
-      .setName("rating")
-      .setDescription("o.0 pick the image kind (warning: nsfw)")
-      .addChoices(...ratings)
-    )
-  ),
+  .addSubcommand(newSubcommand('furry', 'Summons furry in the chat :3')),
   async execute(interaction, DEBUG_MODE) {
     const sub = interaction.options.getSubcommand();
     const tags = {
