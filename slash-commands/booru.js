@@ -94,6 +94,10 @@ export default [{
 
   .addSubcommand(newSubcommand('comic', 'Sends story in the chat . . .', 'comic'))
 
+  .addSubcommand(newSubcommand('neko', 'Summons cat girl in the chat <:3', 'cat_girl'))
+  
+  .addSubcommand(newSubcommand('catboy', 'Summons cat boy in the chat >:3', 'cat_boy'))
+  
   .addSubcommand(newSubcommand('femboy', 'Summons femboy in the chat >:)', 'femboy'))
 
   .addSubcommand(newSubcommand('yaoi', 'Sends BL in the chat //', 'gay'))
