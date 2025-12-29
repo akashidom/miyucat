@@ -39,6 +39,25 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
     content: post.fileUrl
   })
 }
+const tags = {
+  jojo: 'jojo_no_kimyou_na_bouken',
+  alnst: 'alien_stage',
+  uma: 'umamusume',
+  persona: 'persona',
+  ddlc: 'doki_doki_literature_club',
+  miku: 'hatsune_miku',
+  teto: 'kasane_teto',
+  gumi: 'gumi',
+  haku: 'yowane_haku',
+  kafu: 'kafu_(cevio)',
+  demon: 'demon',
+  angel: 'angel',
+  comic: 'comic',
+  femboy: 'femboy',
+  yaoi: 'gay',
+  yuri: 'yuri',
+  furry: 'furry'
+}
 function newSubcommand(name, description) {
   return subcommand => subcommand
   .setName(name)
@@ -101,25 +120,6 @@ export default [{
   async execute(interaction,
     DEBUG_MODE) {
     const sub = interaction.options.getSubcommand();
-    const tags = {
-      jojo: 'jojo_no_kimyou_na_bouken',
-      alnst: 'alien_stage',
-      uma: 'umamusume',
-      persona: 'persona',
-      ddlc: 'doki_doki_literature_club',
-      miku: 'hatsune_miku',
-      teto: 'kasane_teto',
-      gumi: 'gumi',
-      haku: 'yowane_haku',
-      kafu: 'kafu_(cevio)',
-      demon: 'demon',
-      angel: 'angel',
-      comic: 'comic',
-      femboy: 'femboy',
-      yaoi: 'gay',
-      yuri: 'yuri',
-      furry: 'furry'
-    }
     return reply(interaction,
       DEBUG_MODE,
       tags[sub]);
