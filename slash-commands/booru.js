@@ -76,7 +76,6 @@ export default [{
 
   .addSubcommand(newSubcommand('angel', 'Summons angel in the chat O:)', 'angel'))
   
-  /*
   .addSubcommand(newSubcommand('neko', 'Summons cat girl in the chat <:3', 'cat_girl'))
   
   .addSubcommand(newSubcommand('catboy', 'Summons cat boy in the chat >:3', 'cat_boy'))
@@ -87,9 +86,7 @@ export default [{
 
   .addSubcommand(newSubcommand('yuri', 'Sends GL in the chat <>', 'yuri'))
 
-  .addSubcommand(newSubcommand('furry', 'Summons furry in the chat :3', 'furry'))
-  */
-  ,
+  .addSubcommand(newSubcommand('furry', 'Summons furry in the chat :3', 'furry')),
   async execute(interaction,
     DEBUG_MODE) {
     const subcommand = interaction.options.getSubcommand();
