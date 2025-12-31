@@ -20,7 +20,7 @@ async function reply(interaction, DEBUG_MODE, tags = []) {
   let post,
   tries = 0;
   do {
-    const posts = await search(booru, [...tags, '-rating:explicit'], {
+    const posts = await search(booru, [...tags, booru === 'danbooru' ? '-rating:explicit,general' : 'rating:general,sensitive,questionable'], {
       limit: 1,
       random: true
     })
