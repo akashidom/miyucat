@@ -59,6 +59,16 @@ try {
   console.error('>@>@>@>@>@ Error occured while refreshing application (/) commands.', error);
 }
 
+// try to avoid intent bug if it's not possible to get message
+try {
+  // when message is sent
+  client.on(Events.MessageCreate, message => {
+    if (DEBUG_MODE) console.log(':', message.author.username, 'sent', message.content)
+  })
+} catch (error) {
+  console.error('>@>@>@>@>@ Error trying to create message sent trigger:', error)
+}
+
 // when app (/) command sent
 client.on(Events.InteractionCreate, async interaction => {
   if (!interaction.isChatInputCommand()) return;
