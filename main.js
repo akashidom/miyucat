@@ -63,7 +63,12 @@ try {
 try {
   // when message is sent
   client.on(Events.MessageCreate, message => {
-    if (DEBUG_MODE) console.log(':', message.author.username, 'sent', message.content)
+    if (DEBUG_MODE) console.log(':', message.author.username, 'sent', message.content);
+    
+    if (message.content.includes('<@1453460836034154709>') || message.content.toLowerCase().includes('miyu')) {
+      await message.channel.send('hi :3').catch(error => console.error(eror));
+      return;
+    }
   })
 } catch (error) {
   console.error('>@>@>@>@>@ Error trying to create message sent trigger:', error)
