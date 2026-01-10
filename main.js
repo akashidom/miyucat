@@ -31,75 +31,68 @@ const files = fs.readdirSync('./slash-commands/').filter(file => file.endsWith('
 
 // import & push commands
 for (const file of files) {
-  const {
-    default: command
-    } = await import(`./slash-commands/${file}`);
-    if (!Array.isArray(command)) {
-      commands.set(command.data.name, command);
-    } else {
-      for (const sub of command) {
-        commands.set(sub.data.name, sub)
-      }
+  const { default: command } = await import(`./slash-commands/${file}`);
+  if (!Array.isArray(command)) {
+  commands.set(command.data.name, command);
+  } else {
+    for (const sub of command) {
+      commands.set(sub.data.name, sub)
     }
   }
+}
 
-  // declare rest
-  const rest = new REST( {
-    version: '10'
-  }).setToken(TOKEN);
-  try {
-    console.log('# Started refreshing application (/) commands…');
-    if (DEBUG_MODE) console.log('>>> Commands:', commands);
+// declare rest
+const rest = new REST( {
+  version: '10'
+}).setToken(TOKEN);
+try {
+  console.log('# Started refreshing application (/) commands…');
+  if (DEBUG_MODE) console.log('>>> Commands:', commands);
 
-    // refresh app (/) commands
-    await rest.put(Routes.applicationCommands(CLIENT_ID, DEBUG_MODE ? GUILD_ID: undefined), {
-      body: Array.from(commands.values()).map(command => command.data.toJSON())
-    });
-
-    console.log('@ Successfully reloaded application (/) commands.');
-  } catch (error) {
-    console.error('>@>@>@>@>@ Error occured while refreshing application (/) commands.', error);
-  }
-
-  // try to avoid intent bug if it's not possible to get message
-  try {
-    // when message is sent
-    client.on(Events.MessageCreate, async message => {
-      if (DEBUG_MODE) console.log(':', message.author.username, 'sent', message.content);
-      
-      if (message.content.includes('<@1453460836034154709>')) {
-        await message.channel.send('hi').catch(error => console.error(eror));
-      }
-    })
-  } catch (error) {
-    console.error('>@>@>@>@>@ Error trying to create message sent trigger:',
-      error)
-  }
-
-  // when app (/) command sent
-  client.on(Events.InteractionCreate, async interaction => {
-    if (!interaction.isChatInputCommand()) return;
-    if (DEBUG_MODE) console.log('[/]', interaction.user.tag, '→', interaction.commandName);
-    const command = commands.get(interaction.commandName);
-    if (!command) return;
-
-    try {
-      await command.execute(interaction, DEBUG_MODE);
-    } catch (error) {
-      console.error(`>@>@>@>@>@ Error trying to execute /${interaction.commandName}:`, error);
-      const content = `i fainted while trying to do /${interaction.commandName}… <:sad:1454182035244454153>`;
-      if (interaction.replied || interaction.deferred) {
-        await interaction.editReply({
-          content
-        }).catch(() => {});
-      } else {
-        await interaction.reply({
-          content, flags: 64
-        }).catch(() => {});
-      }
-    }
+  // refresh app (/) commands
+  await rest.put(Routes.applicationCommands(CLIENT_ID, DEBUG_MODE ? GUILD_ID: undefined), {
+    body: Array.from(commands.values()).map(command => command.data.toJSON())
   });
 
-  /* LOG IN */
-  console.log('= Logging in…')
-  client.login(TOKEN);
+  console.log('@ Successfully reloaded application (/) commands.');
+} catch (error) {
+  console.error('>@>@>@>@>@ Error occured while refreshing application (/) commands.', error);
+}
+
+// try to avoid intent bug if it's not possible to get message
+try {
+  // when message is sent
+  client.on(Events.MessageCreate, message => {
+    if (DEBUG_MODE) console.log(':', message.author.username, 'sent', message.content)
+  })
+} catch (error) {
+  console.error('>@>@>@>@>@ Error trying to create message sent trigger:', error)
+}
+
+// when app (/) command sent
+client.on(Events.InteractionCreate, async interaction => {
+  if (!interaction.isChatInputCommand()) return;
+  if (DEBUG_MODE) console.log('[/]', interaction.user.tag, '→', interaction.commandName);
+  const command = commands.get(interaction.commandName);
+  if (!command) return;
+
+  try {
+    await command.execute(interaction, DEBUG_MODE);
+  } catch (error) {
+    console.error(`>@>@>@>@>@ Error trying to execute /${interaction.commandName}:`, error);
+    const content = `i fainted while trying to do /${interaction.commandName}… <:sad:1454182035244454153>`;
+    if (interaction.replied || interaction.deferred) {
+      await interaction.editReply({
+        content
+      }).catch(() => {});
+    } else {
+      await interaction.reply({
+        content, flags: 64
+      }).catch(() => {});
+    }
+  }
+});
+
+/* LOG IN */
+console.log('= Logging in…')
+client.login(TOKEN);
