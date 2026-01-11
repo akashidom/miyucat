@@ -62,11 +62,12 @@ try {
 // try to avoid intent bug if it's not possible to get message
 try {
   // when message is sent
-  client.on(Events.MessageCreate, message => {
+  client.on(Events.MessageCreate, async message => {
     if (DEBUG_MODE) console.log(':', message.author.username, 'sent', message.content);
     
     if (message.content.includes('<@1453460836034154709>') || message.content.toLowerCase().includes('miyu')) {
-      await message.channel.send('hi :3').catch(error => console.error(eror));
+      const { randomItem, salutations, expressions } = await import('./dialogues.js');
+      await message.channel.send(`${randomItem(salutations)} ${randomItem(expressions)}`).catch(error => console.error(eror));
       return;
     }
   })
