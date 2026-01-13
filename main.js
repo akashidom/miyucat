@@ -81,8 +81,8 @@ try {
     // only message on guild
     if (!message.inGuild()) return;
     if (message.guildId = GUILD_ID) {
-      if (AUTOREACT_CHANNELS.includes(message.channelId)) {
-        message.react('⭐').catch(error => console.error(error));
+      if (AUTOREACT_CHANNELS.includes(message.channelId) && (message.attachments.size > 0)) { // || message.embeds.length > 0)) {
+        await message.react('⭐').catch(error => console.error(error));
       }
     }
   })
