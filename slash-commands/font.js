@@ -94,9 +94,14 @@ export default {
       const index = alphanumerics.indexOf(character);
       content += index === -1 ? character: style[index];
     }
-
+    
     const embed = new EmbedBuilder()
-    .setDescription(content);
+      .setDescription(content)
+      .setFooter({
+        text: '↑ Hold the text to copy it',
+        iconURL: 'https://cdn.discordapp.com/attachments/1455425861020024936/1460587815288180839/2de7e3a683724d68.gif?ex=696775e7&is=69662467&hm=314e85b637128c2d9ade61efa32c0dcd3158d871f175f5252ba40b068d5b0d83&'
+      });
+    
     await interaction.reply({
       embeds: [embed]});
   }
