@@ -18,7 +18,7 @@ const GUILD_ID = process.env.GUILD_ID;
 
 // declare client
 const client = new Client( {
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent],
   partials: [Partials.Channel, Partials.Message]
 });
 client.on(Events.ClientReady, readyClient => {
@@ -74,6 +74,14 @@ try {
 } catch (error) {
   console.error('>@>@>@>@>@ Error trying to create message sent trigger:', error)
 }
+
+client.on(Events.GuildMemberAdd, async member => {
+  const general = await client.channels.fetch('1449761828379824262'),
+  mention = `<@${member.id}>`;
+  if (DEBUG_MODE) console.log('>>> Member joined:', member, '>>> General Channel:', general, '\n>>> Mention:', mention);
+  
+  await general.send(`<@&1456969380687777912> say welcome to ${mention} <:please:1450126447669673994>`)
+})
 
 // when app (/) command sent
 client.on(Events.InteractionCreate, async interaction => {
