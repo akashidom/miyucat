@@ -16,6 +16,15 @@ const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
 
+// load vars
+const AUTOREACT_CHANNELS = [
+  '1455240467322110045', // hear me out
+  '1451755887994732635', // music corner
+  '1450587588921397391', // art corner
+  '1450581708918493287', // memes corner
+  '1452937009017520128'  // pet corner
+]
+
 // declare client
 const client = new Client( {
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent],
@@ -68,11 +77,14 @@ try {
     if (message.content.includes('<@1453460836034154709>') || message.content.toLowerCase().includes('miyu')) {
       const { randomItem, salutations, expressions } = await import('./dialogues.js');
       await message.channel.send(`${randomItem(salutations)} ${randomItem(expressions)}`).catch(error => console.error(eror));
-      return;
     }
     // only message on guild
     if (!message.inGuild()) return;
-    if (message.guildId = GUILD_ID) {}
+    if (message.guildId = GUILD_ID) {
+      if (AUTOREACT_CHANNELS.includes(message.channelId)) {
+        message.react('⭐').catch(error => console.error(error));
+      }
+    }
   })
 } catch (error) {
   console.error('>@>@>@>@>@ Error trying to create message sent trigger:', error)
