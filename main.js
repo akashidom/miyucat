@@ -1,8 +1,7 @@
 import {
+  CDN,  
   Client,
   EmbedBuilder,
-  EmbedAuthorBuilder,
-  EmbedFooterBuilder,
   Events,
   GatewayIntentBits,
   Partials,
@@ -79,11 +78,11 @@ try {
     
     if (message.content.includes('<@1453460836034154709>') || message.content.toLowerCase().includes('miyu')) {
       const { randomItem, salutations, expressions } = await import('./dialogues.js');
-      await message.channel.send(`${randomItem(salutations)} ${randomItem(expressions)}`).catch(error => console.error(eror));
+      await message.channel.send(`${randomItem(salutations)} ${randomItem(expressions)}`).catch(error => console.error(error));
     }
     // only message on guild
     if (!message.inGuild()) return;
-    if (message.guildId = GUILD_ID) {
+    if (message.guildId === GUILD_ID) {
       if (AUTOREACT_CHANNELS.includes(message.channelId) && (message.attachments.size > 0)) { // || message.embeds.length > 0)) {
         await message.react('⭐').catch(error => console.error(error));
       }
@@ -95,10 +94,35 @@ try {
 
 client.on(Events.GuildMemberAdd, async member => {
   if (member.guild.id === GUILD_ID) {
-    const general = await client.channels.fetch('1449761828379824262');
-    if (DEBUG_MODE) console.log('>>> Member joined:', member, '>>> General Channel:', general, '\n>>> Mention:', mention);
-  
-    await general.send(`<@&1456969380687777912> say welcome to ${<@${member.id}>} <:please:1450126447669673994>`)
+    const general = await client.channels.fetch('1449761828379824262'),
+    guild = await client.guilds.fetch(GUILD_ID);
+    if (DEBUG_MODE) console.log('>>> Member joined:', member, '>>> General Channel:', general);
+    
+    const embed = new EmbedBuilder()
+      .setTitle(`𝕨𝕖𝕝𝕔𝕠𝕞𝕖 𝕥𝕠 ${guild.name}`)
+      .setDescription(`឵           <a:starry:1460596925727379477> introduce yourself at <#1451123742796419205>
+ 
+឵           <a:starry:1460596925727379477> go to <#1450054000287154207> for roles
+
+឵          <a:starry:1460596925727379477> then, start chatting here :D`)
+      .setAuthor({
+        name: member.user.username,
+        iconURL: member.user.displayAvatarURL({
+          size: 1024,
+          dynamic: true
+        })
+      })
+      .setFooter({
+        text: '឵',
+        iconURL: 'https://cdn.discordapp.com/attachments/1455425861020024936/1460587815288180839/2de7e3a683724d68.gif?ex=696775e7&is=69662467&hm=314e85b637128c2d9ade61efa32c0dcd3158d871f175f5252ba40b068d5b0d83&'
+      })
+      .setThumbnail('https://cdn.discordapp.com/attachments/1455425861020024936/1458556908754567332/IMG_20260108_042408.jpg?ex=69601279&is=695ec0f9&hm=ada3b8a7ae9e9d90c8187e091ee1d1b8bb7e058b4856ac8a323547648f52926f&')
+      .setColor('#ffffff');
+    
+    await general.send({
+      content: `# Welcome <@${member.id}>!!\n<@&1456969380687777912> say welcome to <@${member.id}> <:please:1450126447669673994>`,
+      embeds: [embed]
+    });
   }
 })
 
