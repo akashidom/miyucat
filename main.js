@@ -95,11 +95,10 @@ try {
 
 client.on(Events.GuildMemberAdd, async member => {
   if (member.guild.id === GUILD_ID) {
-    const general = await client.channels.fetch('1449761828379824262'),
-    mention = `<@${member.id}>`;
+    const general = await client.channels.fetch('1449761828379824262');
     if (DEBUG_MODE) console.log('>>> Member joined:', member, '>>> General Channel:', general, '\n>>> Mention:', mention);
   
-    await general.send(`<@&1456969380687777912> say welcome to ${mention} <:please:1450126447669673994>`)
+    await general.send(`<@&1456969380687777912> say welcome to ${<@${member.id}>} <:please:1450126447669673994>`)
   }
 })
 
