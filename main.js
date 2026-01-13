@@ -72,14 +72,14 @@ try {
     }
     // only message on guild
     if (!message.inGuild()) return;
-    if (message.guildId = '1449761826777862196') {}
+    if (message.guildId = GUILD_ID) {}
   })
 } catch (error) {
   console.error('>@>@>@>@>@ Error trying to create message sent trigger:', error)
 }
 
 client.on(Events.GuildMemberAdd, async member => {
-  if (member.guild.id === '1449761826777862196') {
+  if (member.guild.id === GUILD_ID) {
     const general = await client.channels.fetch('1449761828379824262'),
     mention = `<@${member.id}>`;
     if (DEBUG_MODE) console.log('>>> Member joined:', member, '>>> General Channel:', general, '\n>>> Mention:', mention);
