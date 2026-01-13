@@ -18,6 +18,7 @@ const GUILD_ID = process.env.GUILD_ID;
 
 // load vars
 const AUTOREACT_CHANNELS = [
+  '1457644913297461451', // media
   '1455240467322110045', // hear me out
   '1451755887994732635', // music corner
   '1450587588921397391', // art corner
