@@ -70,6 +70,9 @@ try {
       await message.channel.send(`${randomItem(salutations)} ${randomItem(expressions)}`).catch(error => console.error(eror));
       return;
     }
+    // only message on guild
+    if (!message.inGuild()) return;
+    if (message.guildId = '1449761826777862196') {}
   })
 } catch (error) {
   console.error('>@>@>@>@>@ Error trying to create message sent trigger:', error)
