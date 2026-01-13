@@ -16,6 +16,16 @@ const TOKEN = process.env.CLIENT_TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 const GUILD_ID = process.env.GUILD_ID;
 
+// load vars
+const AUTOREACT_CHANNELS = [
+  '1457644913297461451', // media
+  '1455240467322110045', // hear me out
+  '1451755887994732635', // music corner
+  '1450587588921397391', // art corner
+  '1450581708918493287', // memes corner
+  '1452937009017520128'  // pet corner
+]
+
 // declare client
 const client = new Client( {
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages, GatewayIntentBits.MessageContent],
@@ -68,7 +78,13 @@ try {
     if (message.content.includes('<@1453460836034154709>') || message.content.toLowerCase().includes('miyu')) {
       const { randomItem, salutations, expressions } = await import('./dialogues.js');
       await message.channel.send(`${randomItem(salutations)} ${randomItem(expressions)}`).catch(error => console.error(eror));
-      return;
+    }
+    // only message on guild
+    if (!message.inGuild()) return;
+    if (message.guildId = GUILD_ID) {
+      if (AUTOREACT_CHANNELS.includes(message.channelId) && (message.attachments.size > 0)) { // || message.embeds.length > 0)) {
+        await message.react('⭐').catch(error => console.error(error));
+      }
     }
   })
 } catch (error) {
@@ -76,11 +92,13 @@ try {
 }
 
 client.on(Events.GuildMemberAdd, async member => {
-  const general = await client.channels.fetch('1449761828379824262'),
-  mention = `<@${member.id}>`;
-  if (DEBUG_MODE) console.log('>>> Member joined:', member, '>>> General Channel:', general, '\n>>> Mention:', mention);
+  if (member.guild.id === GUILD_ID) {
+    const general = await client.channels.fetch('1449761828379824262'),
+    mention = `<@${member.id}>`;
+    if (DEBUG_MODE) console.log('>>> Member joined:', member, '>>> General Channel:', general, '\n>>> Mention:', mention);
   
-  await general.send(`<@&1456969380687777912> say welcome to ${mention} <:please:1450126447669673994>`)
+    await general.send(`<@&1456969380687777912> say welcome to ${mention} <:please:1450126447669673994>`)
+  }
 })
 
 // when app (/) command sent
