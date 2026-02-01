@@ -17,11 +17,19 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 
 @bot.event
-async def on_ready():
+async def on_ready() -> None:
     print(f"=== {bot.user} logged in. ===")
 
 
-def main():
+@bot.event
+async def on_message(message: discord.Message) -> None:
+    if message.author == bot.user:
+        return
+
+    await process_message(message)
+
+
+def main() -> None:
     bot.run(token, log_handler=handler, log_level=logging.INFO)
 
 
