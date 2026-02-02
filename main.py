@@ -26,7 +26,12 @@ async def on_message(message: discord.Message) -> None:
     if message.author == bot.user:
         return
 
-    await process_message(message)
+    await bot.process_commands(message)
+
+
+@bot.command()
+async def ping(ctx: commands.Context) -> None:
+    await ctx.send(f"pong to you, {ctx.author.mention}!")
 
 
 def main() -> None:
